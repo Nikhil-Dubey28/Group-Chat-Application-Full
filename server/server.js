@@ -33,7 +33,7 @@ app.use('/api',conversationRoutes)
 
 
 // relations
-User.hasMany(Chat);
+User.hasMany(Chat, { onDelete: "CASCADE", hooks: true } );
 User.hasMany(Conversation)
 
 Conversation.belongsTo(User)
@@ -92,6 +92,9 @@ socket.off("setup",() => {
 })
 })
 
+
+const job = require("./jobs/cron");
+job.start();
 
 sequelize
 .sync()
