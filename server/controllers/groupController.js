@@ -6,6 +6,7 @@ const User = require('../models/User')
 const { QueryTypes } = require('sequelize');
 const sequelize = require('../database/configDatabase')
 
+
 const createGroup = async (req, res) => {
 
   try {
@@ -16,6 +17,7 @@ const createGroup = async (req, res) => {
     if(members.length == 0) {
       return res.status(404).json({message: "No members added"})
     }
+
 
     const group = await Group.create({
       name: groupName,
@@ -139,6 +141,7 @@ const fetchUsersToRemove = async (req, res) => {
           required: true
         }
       ]
+
     });
 
     res.status(200).json(usersInGroup);
